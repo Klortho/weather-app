@@ -35,7 +35,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml")
-public class HomeControllerTest {
+public class HomeControllerTest_Mockito {
 	
 	@Autowired
 	private ApplicationContext applicationContext;
