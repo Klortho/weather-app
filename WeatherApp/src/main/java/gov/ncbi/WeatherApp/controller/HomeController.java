@@ -5,6 +5,7 @@ import gov.ncbi.WeatherApp.service.YahooService;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private YahooService yahooService;
 
 	/**
 	 * home view to render by returning its name.
@@ -32,9 +36,10 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/report", method = RequestMethod.GET)
 	public String getReport(@Valid Weather weather, BindingResult result) {
+		// test
 		
 		if (!result.hasErrors())
-			YahooService.processRequest(weather);
+			this.yahooService.processRequest(weather);
 		return "home";
 	}
 }

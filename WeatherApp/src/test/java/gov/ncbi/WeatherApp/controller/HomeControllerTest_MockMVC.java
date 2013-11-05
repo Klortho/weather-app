@@ -1,6 +1,7 @@
 package gov.ncbi.WeatherApp.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -52,6 +53,7 @@ public class HomeControllerTest_MockMVC {
 		
 		Integer zip = new Integer(20886);
 		this.mockMvc.perform(get("/report?zipCode="+zip).accept(MediaType.TEXT_HTML))
+		.andDo(print())
 		.andExpect(status().isOk())
 		.andExpect(model().attributeExists("weather"))
 		.andExpect(model().errorCount(0))
@@ -62,8 +64,9 @@ public class HomeControllerTest_MockMVC {
 	@Test
 	public void testImproperZip() throws Exception {
 		
-		Integer zip = new Integer(68503676);
+		Integer zip = new Integer(681234);
 		this.mockMvc.perform(get("/report?zipCode="+zip).accept(MediaType.TEXT_HTML))
+		.andDo(print())
 		.andExpect(status().isOk())
 		.andExpect(model().errorCount(1))
 		.andExpect(view().name("home"));
